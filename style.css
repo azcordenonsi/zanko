@@ -47,7 +47,7 @@
       width: 1024px;
       height: 768px;
       background: #000;
-      background-image: url("img/fundoPrincipal.jpg"); /* TROQUE AQUI */
+      background-image: url("img/fundoPrincipal2.jpg"); /* TROQUE AQUI */
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 1024px 768px;
@@ -389,4 +389,5 @@
       .caso-secreto{ left: 22%; top: 7.5%; width: 34.7%; height: 23.4%; }
 
     }
+
 
