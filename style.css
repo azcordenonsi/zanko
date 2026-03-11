@@ -130,7 +130,7 @@
   height: 180px;
   left: 120px;
   top: 110px;
-  opacity: 0.85;
+  opacity: 0.55;
   animation-duration: 9s;
 }
 
@@ -139,7 +139,7 @@
   height: 220px;
   left: 150px;
   top: 210px;
-  opacity: 0.80;
+  opacity: 0.50;
   animation-duration: 12s;
 }
 
@@ -148,27 +148,8 @@
   height: 160px;
   left: 220px;
   top: 290px;
-  opacity: 0.82;
+  opacity: 0.52;
   animation-duration: 11s;
-}
-
-/* névoa leve mais espalhada */
-.s4 {
-  width: 240px;
-  height: 160px;
-  left: 560px;
-  top: 250px;
-  opacity: 0.84;
-  animation-duration: 14s;
-}
-
-.s5 {
-  width: 180px;
-  height: 120px;
-  left: 700px;
-  top: 360px;
-  opacity: 0.80;
-  animation-duration: 13s;
 }
 
 @keyframes smokeFloat {
@@ -223,6 +204,7 @@
       color: var(--paper);
       opacity: 0.95;
       letter-spacing: 0.06em;
+      margin-top: 10px;
     }
 
     .hotspot {
@@ -389,5 +371,6 @@
       .caso-secreto{ left: 22%; top: 7.5%; width: 34.7%; height: 23.4%; }
 
     }
+
 
 
