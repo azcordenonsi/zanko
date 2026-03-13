@@ -1,137 +1,396 @@
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     }
 
-    :root {
-      --bg: #000000;
-      --gold: #c9a56a;
-      --gold-soft: rgba(201, 165, 106, 0.35);
-      --paper: #f2e7d2;
-      --label-bg: rgba(16, 11, 8, 0.55);
-      --label-border: rgba(201, 165, 106, 0.22);
-      --hover-bg: rgba(255, 220, 160, 0.08);
-      --shadow: rgba(0, 0, 0, 0.85);
+:root {
+    --bg: #000000;
+    --gold: #c9a56a;
+    --gold-soft: rgba(201, 165, 106, 0.35);
+    --paper: #f2e7d2;
+    --label-bg: rgba(16, 11, 8, 0.55);
+    --label-border: rgba(201, 165, 106, 0.22);
+    --hover-bg: rgba(255, 220, 160, 0.08);
+    --shadow: rgba(0, 0, 0, 0.85);
     }
 
-    body {
-      background: var(--bg);
-      color: var(--paper);
-      min-height: 100vh;
-      font-family: "Cormorant Garamond", serif;
-      overflow: hidden;
-    }
+body{
+	background:#000;
+	margin:0;
+	font-family: "Cormorant Garamond", serif;
+	}
+		
+/* CENTRALIZA INTERFACE */
+#interface{
+	width:100%;
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	overflow:hidden;
+	}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      padding: 20px;
-    }
+/* CENA 1024x768 */
+#scene-gravador{
+	position:relative;
+	width:1024px;
+	height:768px;
+	background-image:url("img/fundoGravador.jpg");
+	background-size:1024px 768px;
+	background-repeat:no-repeat;
+	min-width:1024px;
+	max-width:1024px;
+	min-height:768px;
+	max-height:768px;
+	overflow:hidden;
+	}
+	
+/* CENA 1024x768 */
+#scene-jornaisRevistas{
+	position:relative;
+	width:1024px;
+	height:768px;
+	background-image:url("img/fundoJornaisRevistas.jpg");
+	background-size:1024px 768px;
+	background-repeat:no-repeat;
+	min-width:1024px;
+	max-width:1024px;
+	min-height:768px;
+	max-height:768px;
+	overflow:hidden;
+	}
+	
+/* CENA 1024x768 */
+#scene-arquivos{
+	position:relative;
+	width:1024px;
+	height:768px;
+	background-image:url("img/arquivosFundo.jpg");
+	background-size:1024px 768px;
+	background-repeat:no-repeat;
+	min-width:1024px;
+	max-width:1024px;
+	min-height:768px;
+	max-height:768px;
+	overflow:hidden;
+	}
+		
 
-    .scene-wrapper {
-      position: relative;
-      width: 1024px;
-      height: 768px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-    }
+/* ARQUIVOS - LISTA DE CASOS */
 
-    .scene {
-      position: relative;
-      width: 1024px;
-      height: 768px;
-      background: #000;
-      background-image: url("img/fundoPrincipal.jpg"); /* TROQUE AQUI */
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 1024px 768px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(201, 165, 106, 0.08),
-        0 25px 60px rgba(0, 0, 0, 0.65);
-    }
+#lista-casos{
+	display:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+	transition:opacity 0.4s ease;
+}
 
-    /* vinheta */
-    .scene::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at center,
-          rgba(0,0,0,0) 42%,
-          rgba(0,0,0,0.18) 62%,
-          rgba(0,0,0,0.45) 82%,
-          rgba(0,0,0,0.72) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
+/* IMAGEM DA PASTA DE CASOS */
+#imagem-casos{
+	width:1024px;
+}
 
- /* luz da luminária - versão mais visível */
-.scene::after {
-  content: "";
+/* ÁREAS DOS CASOS */
+.caso{
+	position:absolute;
+	cursor:pointer;
+}
+
+/* PASTA ABERTA */
+#pasta-aberta{
+	display:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+	}
+
+/* IMAGEM DA PASTA */
+#img-pasta{
+	width:1024px;
+}
+
+/* PÁGINAS */
+.pagina{
+	position:absolute;
+	width:339px;
+	top:171px;
+}
+
+#pagina-esq{
+	left:122px;
+}
+
+#pagina-dir{
+	right:120px;
+}
+
+/* SETAS DOS CASOS */
+.nav{
+	position:absolute;
+	width:30px;
+	cursor:pointer;
+	
+	}
+
+#btn-prev{
+	top:625px;
+	left:120px;
+}
+
+#btn-next{
+	top:605px;
+	right:115px;
+}
+
+
+/* BOTÃO FECHAR X */
+.fechar{
+	position:absolute;
+	left:865px;
+	top:140px;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	z-index: 10;
+	display: none;
+}		
+
+
+
+/* CENA 1024x768 */
+#scene-videos{
+	position:relative;
+	width:1024px;
+	height:768px;
+	background-size:1024px 768px;
+	background-repeat:no-repeat;
+	min-width:1024px;
+	max-width:1024px;
+	min-height:768px;
+	max-height:768px;
+	overflow:hidden;
+	}
+
+.sceneV {
+	position: relative;
+	width: 1024px;
+	height: 768px;
+	overflow: hidden;
+	background: #000;
+}
+
+#tv-container .plyr {
   position: absolute;
-  inset: 0;
+  width: 500px;
+  height: 410px;
+  top: 110px;
+  left: 190px;
   z-index: 2;
-  pointer-events: none;
-  background:
+}	
+
+#tv-frame-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  z-index: 3;
+}	
+	
+/* THUMBNAILS */
+.item-video {
+  position: absolute;
+  width: 250px;
+  cursor: pointer;
+  transition: transform .2s;
+  z-index: 4;
+}
+
+.item-video:hover {
+  transform: scale(1.05);
+}	
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    padding: 0px;
+}
+
+.scene-wrapper {
+    position: relative;
+    width: 1024px;
+    height: 768px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.scene {
+	position: relative;
+	width: 1024px;
+	height: 768px;
+	overflow: hidden;
+	background: #000;
+}
+
+
+/* vinheta */
+.scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+		radial-gradient(circle at center,
+        rgba(0,0,0,0) 42%,
+        rgba(0,0,0,0.18) 62%,
+        rgba(0,0,0,0.45) 82%,
+        rgba(0,0,0,0.72) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* luz da luminária Principal */
+.scene::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background:
+		radial-gradient(
+		ellipse at 28% 34%,
+		rgba(255, 210, 120, 0.30) 0%,
+		rgba(255, 210, 120, 0.18) 14%,
+		rgba(255, 210, 120, 0.08) 24%,
+		rgba(255, 210, 120, 0.00) 38%
+		),
+		radial-gradient(
+		ellipse at 34% 48%,
+		rgba(255, 190, 90, 0.10) 0%,
+		rgba(255, 190, 90, 0.04) 18%,
+		rgba(255, 190, 90, 0.00) 32%
+		);
+	animation: lampPulse 15s ease-in-out infinite;
+}
+
+.lamp-home {
+  --lamp-x1: 28%;
+  --lamp-y1: 34%;
+  --lamp-x2: 33%;
+  --lamp-y2: 48%;
+}
+
+.lamp-contato {
+  --lamp-x1: 12%;
+  --lamp-y1: 25%;
+  --lamp-x2: 15%;
+  --lamp-y2: 28%;
+}
+
+.lamp-arquivos {
+  --lamp-x1: 28%;
+  --lamp-y1: 10%;
+  --lamp-x2: 33%;
+  --lamp-y2: 18%;
+}
+
+.lamp-glow {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+
+	background:
     radial-gradient(
-      ellipse at 28% 34%,
-      rgba(255, 210, 120, 0.30) 0%,
-      rgba(255, 210, 120, 0.18) 14%,
+      ellipse at var(--lamp-x1) var(--lamp-y1),
+      rgba(255, 210, 120, 0.45) 0%,
+      rgba(255, 210, 120, 0.20) 14%,
       rgba(255, 210, 120, 0.08) 24%,
-      rgba(255, 210, 120, 0.00) 38%
+      rgba(255, 210, 120, 0.00) 40%
     ),
     radial-gradient(
-      ellipse at 34% 48%,
-      rgba(255, 190, 90, 0.10) 0%,
-      rgba(255, 190, 90, 0.04) 18%,
-      rgba(255, 190, 90, 0.00) 32%
+      ellipse at var(--lamp-x2) var(--lamp-y2),
+      rgba(255, 190, 90, 0.18) 0%,
+      rgba(255, 190, 90, 0.08) 18%,
+      rgba(255, 190, 90, 0.00) 34%
     );
-  animation: lampPulse 4s ease-in-out infinite;
+
+	transform-origin: var(--lamp-x1) var(--lamp-y1);
+	animation: lampFlicker 28s infinite, lampShift 58s infinite alternate;
+}
+
+@keyframes lampShift {
+	from { transform: translateX(0px); }
+	to   { transform: translateX(3px); }
+}
+
+@keyframes lampFlicker {
+	0%   { opacity: 0.95; }
+	15%  { opacity: 1; }
+	16%  { opacity: 0.2; }
+	18%  { opacity: 0.95; }
+	30%  { opacity: 0.90; }
+	42%  { opacity: 0.3; }
+	44%  { opacity: 0.95; }
+	60%  { opacity: 0.92; }
+	72%  { opacity: 0.25; }
+	74%  { opacity: 0.95; }
+	100% { opacity: 0.90; }
 }
 
 @keyframes lampPulse {
-  0%   { opacity: 0.75; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.78; }
+	0%   { opacity: 0.85; }
+	18%  { opacity: 0.95; }
+	20%  { opacity: 0.35; }
+	22%  { opacity: 0.95; }
+	40%  { opacity: 0.90; }
+	58%  { opacity: 0.30; }
+	60%  { opacity: 0.95; }
+	78%  { opacity: 0.88; }
+	92%  { opacity: 0.40; }
+	94%  { opacity: 0.92; }
+	100% { opacity: 0.85; }
 }
 
-    /* névoa/fumaça */
+/* névoa/fumaça */
 .mist {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	pointer-events: none;
 }
 
 .smoke {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.34) 0%,
-    rgba(255, 255, 255, 0.24) 30%,
-    rgba(255, 255, 255, 0.14) 55%,
-    rgba(255, 255, 255, 0.00) 78%
-  );
-  animation: smokeFloat 10s ease-in-out infinite alternate;
+	position: absolute;
+	display: block;
+	border-radius: 50%;
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 0.34) 0%,
+		rgba(255, 255, 255, 0.24) 30%,
+		rgba(255, 255, 255, 0.14) 55%,
+		rgba(255, 255, 255, 0.00) 78%
+		);
+	animation: smokeFloat 10s ease-in-out infinite alternate;
 }
 
 /* manchas principais perto da luminária/cigarro */
 .s1 {
-  width: 180px;
-  height: 180px;
-  left: 120px;
-  top: 110px;
-  opacity: 0.55;
-  animation-duration: 9s;
+	width: 180px;
+	height: 180px;
+	left: 120px;
+	top: 110px;
+	opacity: 0.55;
+	animation-duration: 9s;
 }
 
 .s2 {
@@ -164,215 +423,693 @@
   }
 }
 
-    .brand {
-      position: absolute;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 5;
-      pointer-events: none;
-      text-shadow:
+.brand {
+    position: absolute;
+    left: 50%;
+    bottom: 17px;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+    text-shadow:
         0 2px 4px rgba(0,0,0,0.95),
         0 0 18px rgba(0,0,0,0.65);
-      animation: titleFade 3s ease;
+    animation: titleFade 3s ease;
     }
 
-    @keyframes titleFade {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
+@keyframes titleFade {
+    from {
+       opacity: 0;
+       transform: translateX(-50%) translateY(10px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(-50%) translateY(0);
+       }
+    }
+
+.brand h1 {
+    font-size: 3.2rem;
+	font-family: "Special Elite", monospace;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+
+.brand p {
+    font-family: "Special Elite", monospace;
+    font-size: 0.92rem;
+    color: var(--paper);
+    opacity: 0.95;
+    letter-spacing: 0.06em;
+    margin-top: 10px;
+    }
+	
+
+
+.hotspot {
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--paper);
+    border-radius: 10px;
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+}
+
+.hotspot:hover {
+    transform: scale(1.035);
+    background: var(--hover-bg);
+    box-shadow: inset 0 0 0 1px rgba(201,165,106,0.08);
+    filter: brightness(1.08);
+}
+
+.label {
+    display: inline-block;
+    padding: 6px 12px;
+    font-family: "Special Elite", monospace;
+    font-size: 0.84rem;
+    line-height: 1.2;
+    text-align: center;
+    color: #f6ebd8;
+    background: var(--label-bg);
+    border: 1px solid var(--label-border);
+    border-radius: 6px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+    box-shadow:
+      0 4px 14px rgba(0,0,0,0.38),
+      0 0 12px rgba(0,0,0,0.18);
+      backdrop-filter: blur(1px);
+}
+
+.hotspot:hover .label {
+    border-color: rgba(201, 165, 106, 0.45);
+    box-shadow:
+      0 4px 14px rgba(0,0,0,0.48),
+      0 0 16px rgba(201, 165, 106, 0.10);
+}
+
+/* Hotspot escondido */
+.secret {
+    background: transparent !important;
+    border-radius: 0;
+}
+
+.secret:hover {
+    background: rgba(255, 230, 170, 0.15) !important;
+    outline: 1px dashed rgba(201,165,106,0.22);
+}
+
+.listaContato {
+    left: 430px;
+    top: 345px;
+    width: 370px;
+    height: 250px;	
+	clip-path: ellipse(25% 21% at 42% 42%);
+}
+
+.listaArquivos {
+    left: 20px;
+    top: 275px;
+    width: 420px;
+    height: 340px;
+	clip-path: polygon(
+      3% 13%,
+      69% 0%,
+      100% 70%,
+      24% 92%
+    );
+	
+}
+
+.listaJornais01 {
+    left: 0px;
+    top: 470px;
+    width: 360px;
+    height: 205px;
+    clip-path: polygon(
+      50% 0%,
+      98% 14%,
+      50% 97%,
+      -2% 77%
+    );
+}
+
+.listaJornais02 {
+    left: 200px;
+    top: 135px;
+    width: 450px;
+    height: 205px;
+	clip-path: polygon(
+      0% 21%,
+      64% 2%,
+      99% 57%,
+      29% 96%
+    );
+}
+
+.listaJornais03 {
+    left: 405px;
+    top: 455px;
+    width: 410px;
+    height: 255px;
+	clip-path: polygon(
+      0% 18%,
+      50% 0%,
+      100% 80%,
+      42% 99%
+    );	
+}
+
+.jornaisRevistasFundo {
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--paper);
+    border-radius: 10px;
+    background: var(--hover-bg);
+	left: 60px;
+	top: 80px;
+	width: 900px;
+	height: 600px;
+	display: none;
+}
+
+/* PÁGINAS JORNAIS E REVISTAS */
+.paginaJR{
+	position:absolute;
+
+	width:794px;
+	height:563px;
+
+	top:28px;
+	left:53px;
+
+	overflow-y:auto;
+	overflow-x:hidden;
+	scrollbar-width:none;
+}
+
+.paginaJR::-webkit-scrollbar{
+	display:none;
+}
+
+/* IMAGEM DENTRO DA PÁGINA */
+.paginaJR img{
+	width:794px;
+	height:auto;
+	display:block;
+}
+
+
+/* POSICIONAMENTO AJUSTADO PARA 1024x768 */
+.depoimentos {
+    left: 40px;
+    top: 430px;
+    width: 190px;
+    height: 78px;
+}
+
+.arquivos {
+    left: 358px;
+    top: 445px;
+    width: 185px;
+    height: 82px;
+}
+
+.filmes {
+    left: 392px;
+    top: 545px;
+    width: 210px;
+    height: 74px;
+}
+
+.jornais {
+    left: 600px;
+    top: 520px;
+    width: 210px;
+    height: 82px;
+}
+
+.sistema {
+    left: 855px;
+    top: 330px;
+    width: 145px;
+    height: 82px;
+}
+
+.contato {
+    left: 680px;
+    top: 460px;
+    width: 155px;
+    height: 74px;
+}
+
+.caso-secreto {
+    left: 225px;
+    top: 58px;
+    width: 355px;
+    height: 180px;
+}
+
+
+/* efeito opcional de entrada */
+.scene {
+    animation: sceneFade 1.4s ease;
+}
+
+@keyframes sceneFade {
+	from {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+}
+
+/* Responsivo simples:
+       em telas menores, mantém proporção e reduz tudo */
+@media (max-width: 1100px) {
+    .scene-wrapper,
+    .scene {
+      width: 90vw;
+      height: calc(90vw * 0.75);
+      max-width: 1024px;
+      max-height: 768px;
+      background-size: 100% 100%;
+	  }
+	
+	.brand {
+      bottom: 2.8%;
     }
 
     .brand h1 {
-      font-size: 3.5rem;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--gold);
-      margin-bottom: 6px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
     }
 
     .brand p {
-      font-family: "Special Elite", monospace;
-      font-size: 0.92rem;
-      color: var(--paper);
-      opacity: 0.95;
-      letter-spacing: 0.06em;
-      margin-top: 10px;
-    }
-
-    .hotspot {
-      position: absolute;
-      z-index: 6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--paper);
-      border-radius: 10px;
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease,
-        filter 0.25s ease;
-    }
-
-    .hotspot:hover {
-      transform: scale(1.035);
-      background: var(--hover-bg);
-      box-shadow: inset 0 0 0 1px rgba(201,165,106,0.08);
-      filter: brightness(1.08);
+      font-size: clamp(0.65rem, 1.2vw, 0.92rem);
     }
 
     .label {
-      display: inline-block;
-      padding: 6px 12px;
-      font-family: "Special Elite", monospace;
-      font-size: 0.84rem;
-      line-height: 1.2;
-      text-align: center;
-      color: #f6ebd8;
-      background: var(--label-bg);
-      border: 1px solid var(--label-border);
-      border-radius: 6px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-      box-shadow:
-        0 4px 14px rgba(0,0,0,0.38),
-        0 0 12px rgba(0,0,0,0.18);
-      backdrop-filter: blur(1px);
+      font-size: clamp(0.58rem, 0.95vw, 0.84rem);
+      padding: 5px 10px;
     }
-
-    .hotspot:hover .label {
-      border-color: rgba(201, 165, 106, 0.45);
-      box-shadow:
-        0 4px 14px rgba(0,0,0,0.48),
-        0 0 16px rgba(201, 165, 106, 0.10);
-    }
-
-    /* Hotspot escondido */
-    .secret {
-      background: transparent !important;
-      border-radius: 0;
-    }
-
-    .secret:hover {
-      background: rgba(255, 230, 170, 0.05) !important;
-      outline: 1px dashed rgba(201,165,106,0.22);
-    }
-
-    /* POSICIONAMENTO AJUSTADO PARA 1024x768 */
-
-    .depoimentos {
-      left: 40px;
-      top: 430px;
-      width: 190px;
-      height: 78px;
-    }
-
-    .arquivos {
-      left: 300px;
-      top: 365px;
-      width: 185px;
-      height: 82px;
-    }
-
-    .filmes {
-      left: 392px;
-      top: 545px;
-      width: 210px;
-      height: 74px;
-    }
-
-    .jornais {
-      left: 635px;
-      top: 486px;
-      width: 210px;
-      height: 82px;
-    }
-
-    .sistema {
-      left: 850px;
-      top: 360px;
-      width: 145px;
-      height: 82px;
-    }
-
-    .contato {
-      left: 715px;
-      top: 430px;
-      width: 155px;
-      height: 74px;
-    }
-
-    .caso-secreto {
-      left: 225px;
-      top: 58px;
-      width: 355px;
-      height: 180px;
-    }
-
-    /* efeito opcional de entrada */
-    .scene {
-      animation: sceneFade 1.4s ease;
-    }
-
-    @keyframes sceneFade {
-      from {
-        opacity: 0;
-        transform: scale(0.985);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Responsivo simples:
-       em telas menores, mantém proporção e reduz tudo */
-    @media (max-width: 1100px) {
-      .scene-wrapper,
-      .scene {
-        width: 90vw;
-        height: calc(90vw * 0.75);
-        max-width: 1024px;
-        max-height: 768px;
-        background-size: 100% 100%;
-      }
-
-      .brand {
-        bottom: 2.8%;
-      }
-
-      .brand h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-      }
-
-      .brand p {
-        font-size: clamp(0.65rem, 1.2vw, 0.92rem);
-      }
-
-      .label {
-        font-size: clamp(0.58rem, 0.95vw, 0.84rem);
-        padding: 5px 10px;
-      }
 
       .depoimentos { left: 3.9%; top: 56%; width: 18.6%; height: 10.2%; }
-      .arquivos    { left: 29.3%; top: 47.5%; width: 18.1%; height: 10.7%; }
+      .arquivos    { left: 3.3%; top: 47.5%; width: 18.1%; height: 10.7%; }
       .filmes      { left: 38.3%; top: 71%; width: 20.5%; height: 9.6%; }
       .jornais     { left: 62%; top: 63.3%; width: 20.5%; height: 10.7%; }
       .sistema     { left: 83%; top: 46.9%; width: 14.2%; height: 10.7%; }
       .contato     { left: 69.8%; top: 56%; width: 15.1%; height: 9.6%; }
       .caso-secreto{ left: 22%; top: 7.5%; width: 34.7%; height: 23.4%; }
-
-    }
-
+}
 
 
+.audio-toggle {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+
+  width: 110px;       /* largura fixa */
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(201, 165, 106, 0.28);
+  border-radius: 4px;
+
+  background: rgba(14, 10, 8, 0.78);
+  color: #f2e7d2;
+
+  font-family: "Special Elite", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.audio-toggle:hover {
+  background: rgba(24, 18, 12, 0.88);
+  border-color: rgba(201, 165, 106, 0.50);
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.55),
+    0 0 12px rgba(201, 165, 106, 0.08);
+}
+
+.audio-toggle:active {
+  transform: translateY(0);
+}
+
+.audio-toggle:focus {
+  outline: none;
+  border-color: rgba(201, 165, 106, 0.65);
+  box-shadow:
+    0 0 0 2px rgba(201, 165, 106, 0.14),
+    0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+.rain-window {
+  position: absolute;
+  left: 670px;
+  top: 70px;
+  width: 310px;
+  height: 225px;
+  background: url("img/rain.gif") center/cover no-repeat;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+.rain-window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.rain-window-contato {
+  position: absolute;
+  left: 910px;
+  top: 0px;
+  width: 120px;
+  height: 215px;
+  background: url("img/rain.gif") center/cover no-repeat;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+..rain-window-contato::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
 
 
+.office-layer {
+  position: absolute;
+  inset: 0;
+  background: url("img/fundoPrincipal.png") center/1024px 768px no-repeat;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contato-layer {
+  position: absolute;
+  inset: 0;
+  background: url("img/fundoContato.png") center/1024px 768px no-repeat;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lamp-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+.ui-button{
+	position:absolute;
+	height:34px;
+    width: 110px;       /* largura fixa */
+  	display:flex;
+	align-items:center;
+	justify-content:center;
+
+	padding:0;
+
+	border:1px solid rgba(201,165,106,0.28);
+	border-radius:4px;
+
+	background:rgba(14,10,8,0.78);
+	color:#f2e7d2;
+
+	font-family:"Special Elite", monospace;
+	font-size:0.74rem;
+	letter-spacing:0.08em;
+
+	text-transform:uppercase;
+	text-decoration:none;
+
+	cursor:pointer;
+
+	box-shadow:
+		0 4px 14px rgba(0,0,0,0.45),
+		inset 0 0 0 1px rgba(255,255,255,0.02);
+
+	transition:
+		background 0.25s ease,
+		border-color 0.25s ease,
+		transform 0.2s ease,
+		box-shadow 0.25s ease;
+	}
+
+.ui-button:hover{
+	background:rgba(24,18,12,0.92);
+	border-color:rgba(201,165,106,0.50);
+	transform:translateY(-1px);
+	box-shadow:
+	0 6px 18px rgba(0,0,0,0.55),
+	0 0 12px rgba(201,165,106,0.08);
+	}
+
+.ui-button:active{
+	transform:translateY(0);
+	}
+
+.ui-button:focus {
+  outline: none;
+  border-color: rgba(201, 165, 106, 0.65);
+  box-shadow:
+    0 0 0 2px rgba(201, 165, 106, 0.14),
+    0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+.btn-voltar{
+	top:18px;
+	right:18px;
+	z-index:20;
+}
+
+#escala{
+	transform: scale(0.95);
+	margin-top: -15px;
+}
+
+
+/* BOTÕES DE NAVEGAÇÃO */
+.nav-btn {
+  position: absolute;
+  bottom: 30px;
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
+  user-select: none;
+  z-index: 999;
+}
+
+.nav-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+} 
+
+#nav-esq { left: 240px; }
+#nav-dir { right: 240px; }
+
+
+#btn-fecharJR{
+right:3px;
+top:10px;
+}
+
+#btnJR-prev{
+left:3px;
+top:300px;
+}
+
+#btnJR-next{
+right:3px;
+top:300px;
+}
+
+.nav-arrow{
+	position:absolute;
+	width:46px;
+	height:46px;
+	border:1px solid rgba(201,165,106,0.45);
+	border-radius:4px;
+	background:rgba(14,10,8,0.75);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	cursor:pointer;
+	transition:all 0.25s ease;
+	box-shadow:
+		0 4px 14px rgba(0,0,0,0.45),
+		inset 0 0 0 1px rgba(255,255,255,0.02);
+	font-size: 2.5rem;
+	font-family: "Special Elite", monospace;
+    line-height: 1.3;
+}
+
+.nav-arrowFechar{
+	position:absolute;
+	width:46px;
+	height:46px;
+	border:1px solid rgba(201,165,106,0.45);
+	border-radius:4px;
+	background:rgba(14,10,8,0.75);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	cursor:pointer;
+	transition:all 0.25s ease;
+	box-shadow:
+		0 4px 14px rgba(0,0,0,0.45),
+		inset 0 0 0 1px rgba(255,255,255,0.02);
+	font-size: 2.0rem;
+	font-family: "Special Elite", monospace;
+    padding-top: 8px;
+}
+
+.nav-arrowFechar.fecharJR::before{
+	content:"X";
+}
+
+.nav-arrow.right::before{
+	content:"→";
+	margin-left: 11px;
+}
+
+.nav-arrow.left::before{
+	content:"←";
+	margin-left: 11px;
+}
+
+
+
+.nav-arrow:hover{
+
+border-color:rgba(201,165,106,0.7);
+
+background:rgba(24,18,12,0.92);
+
+transform:translateY(-1px);
+
+box-shadow:
+0 6px 18px rgba(0,0,0,0.55),
+0 0 12px rgba(201,165,106,0.08);
+
+}
+
+
+
+/* GRAVADOR */
+#gravador {
+  position: absolute;
+  left: 40px;
+  top: 80px;
+  width: 330px;
+}
+
+/* DISPLAY */
+#caption-display {
+  position: absolute;
+  left: 47px;
+  top: 140px;
+  width: 385px;
+  height: 40px;
+  color: #00ff65;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  font-size: 18px;
+  white-space: pre;
+  overflow: hidden;
+}
+
+/* CONTAINER DAS FITAS — apenas delimita área */
+#fitas-container {
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  width: 160px;
+  height: 520px;
+  pointer-events: none; /* deixa apenas as fitas clicáveis */
+}
+
+/* Cada fita terá posição absoluta */
+.fita {
+  position: absolute;
+  width: 180px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform .2s;
+}
+
+.fita:hover {
+  transform: scale(1.06);
+}
+
+.caixaFita {
+  position: absolute;
+  left: 480px;   /* ajuste fino conforme layout */
+  top: 325px;    /* ajuste fino conforme layout */
+  width: 220px;
+  display: none; /* começa invisível */
+}
+
+.caixaFita:hover {
+  transform: scale(1.06);
+}
+
+#area-gravador {
+    position: relative;
+    display: inline-block;
+}
+
+.gravadorFundo {
+    position: absolute;
+    top: 330px;
+    left: 190px;
+    width: 200px;
+}
+
+.gravadorTopo {
+    position: absolute;
+    top: 60px;
+    left: 30px;
+    width: 430px;
+}
