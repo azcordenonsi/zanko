@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arquivos - Inspetor Zanko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div id="interface">
+  <div id="escala">
+    <section id="scene-arquivos" class="scene">
+      <div class="lamp-glow lamp-arquivos"></div>
+      <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+
+      <div id="lista-casos">
+        <img src="img/pastaAbertaN.png" id="imagem-casos">
+        <div class="caso" data-caso="1" style="top:180px; left:130px; width:340px; height:50px;"></div>
+        <div class="caso" data-caso="2" style="top:232px; left:130px; width:340px; height:50px;"></div>
+      </div>
+	  <img id="btn-fechar-caso" class="fechar" src="img/btn-x.png">
+      <div id="pasta-aberta">
+        <img id="img-pasta" src="img/pasta-caso-abertoN.png">
+        <img id="pagina-esq" class="pagina" src="">
+        <img id="pagina-dir" class="pagina" src="">
+        <img id="btn-prev" class="nav" src="img/seta-esq.png">
+        <img id="btn-next" class="nav" src="img/seta-dir.png">
+        
+      </div>
+      <a class="hotspot secret listaArquivos" href="#" id="abrir-arquivos" aria-label="Abrir arquivos"></a>
+	  <button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
+    </section>
+  </div>
+</div>
+
+<audio id="luzAudio" loop preload="auto">
+  <source src="audio/luzIncandescente.ogg" type="audio/ogg">
+  Seu navegador não suporta áudio.
+</audio>
+<audio id="pageFlipAudio" preload="auto">
+  <source src="audio/pageFlip.mp3" type="audio/mpeg">
+</audio>
+
+<script src="documentos.js"></script>
+
+<script>
+const luzAudio = document.getElementById("luzAudio");
+const pageFlipAudio = document.getElementById("pageFlipAudio");
+const audioToggle = document.getElementById("audioToggle");
+
+let audioStarted = false;
+let fadeInterval = null;
+
+function isAudioOn() {
+  return !luzAudio.paused;
+}
+
+function updateAudioButton() {
+  audioToggle.textContent = luzAudio.paused ? "ÁUDIO: OFF" : "ÁUDIO: ON";
+}
+
+function fadeInAudio(target = 0.22, duration = 2500) {
+  clearInterval(fadeInterval);
+
+  luzAudio.volume = 0;
+  const steps = 30;
+  const stepTime = duration / steps;
+  const increment = target / steps;
+
+  fadeInterval = setInterval(() => {
+    if (luzAudio.volume + increment >= target) {
+      luzAudio.volume = target;
+      clearInterval(fadeInterval);
+    } else {
+      luzAudio.volume = Math.min(luzAudio.volume + increment, target);
+    }
+  }, stepTime);
+}
+
+async function startLuz() {
+  try {
+    await luzAudio.play();
+    if (!audioStarted) {
+      fadeInAudio(0.20, 2200);
+      audioStarted = true;
+    }
+    updateAudioButton();
+  } catch (err) {
+    updateAudioButton();
+  }
+}
+
+function stopLuz() {
+  luzAudio.pause();
+  updateAudioButton();
+}
+
+/* FUNÇÃO REUTILIZÁVEL PARA VIRAR PÁGINA */
+function playPageFlip(volume = 0.45) {
+  if (!isAudioOn()) return;
+  if (!pageFlipAudio) return;
+
+  try {
+    pageFlipAudio.pause();
+    pageFlipAudio.currentTime = 0;
+    pageFlipAudio.volume = volume;
+    pageFlipAudio.play().catch(() => {});
+  } catch (err) {
+    // silencioso
+  }
+}
+
+/* FUNÇÃO AUXILIAR: associa o som a vários botões */
+function bindPageFlip(selector, volume = 0.45) {
+  document.querySelectorAll(selector).forEach((element) => {
+    element.addEventListener("click", () => {
+      playPageFlip(volume);
+    });
+  });
+}
+
+window.addEventListener("load", () => {
+  startLuz();
+});
+
+document.addEventListener("click", () => {
+  if (!audioStarted && luzAudio.paused) {
+    startLuz();
+  }
+}, { once: true });
+
+audioToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  if (luzAudio.paused) {
+    startLuz();
+  } else {
+    stopLuz();
+  }
+});
+
+updateAudioButton();
+
+bindPageFlip("#btn-next");
+bindPageFlip("#btn-prev");
+bindPageFlip("#btn-fechar-caso");
+bindPageFlip(".caso");
+bindPageFlip("#abrir-arquivos");
+</script>
+</body>
+</html>

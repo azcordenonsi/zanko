@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div id="interface">
+  <div id="escala">
+    <section id="scene-gravador" class="scene">
+
+    <!-- BOTÃO VOLTAR -->
+    <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+    <div id="gravador" class="gravadorFundo">
+    </div>
+	<div id="area-gravador">
+		  <img id="gravador-fundo" src="img/gravadorSemFita.png" class="gravadorFundo" alt="Gravador sem fita">
+		  <img id="gravador-topo" src="img/gravadorSozinho.png" class="gravadorTopo" alt="Gravador">
+      </div>
+
+      <!-- DISPLAY DO TEXTO -->
+      <pre id="caption-display" class="textoCorrendo"></pre>
+	  
+	  <!-- CAIXA DA FITA -->
+	  <img id="caixa-fita" src="" alt="" class="caixaFita">
+
+      <!-- FITAS -->
+      <div id="fitas-container">
+		<img class="fita" data-id="081" src="img/fita081.png" style="top: 0px;">
+		<img class="fita" data-id="082" src="img/fita082.png" style="top: 45px;">
+		<img class="fita" data-id="083" src="img/fita083.png" style="top: 90px;">
+		<img class="fita" data-id="084" src="img/fita084.png" style="top: 135px;">
+		<img class="fita" data-id="085" src="img/fita085.png" style="top: 180px;">
+		<img class="fita" data-id="086" src="img/fita086.png" style="top: 225px;">
+		<img class="fita" data-id="087" src="img/fita087.png" style="top: 270px;">
+	  </div>
+	  <button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
+	</section>
+  </div>
+</div>
+
+
+
+<script src="gravador.js"></script>
+
+
+<script>
+  const audioToggle = document.getElementById("audioToggle");
+  audioToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if ( audioToggle.textContent == "ÁUDIO: ON" ) {
+         stopAudio();
+		 audioToggle.textContent = "ÁUDIO: OFF";
+		 }
+    else {
+         playAudio();
+		 audioToggle.textContent = "ÁUDIO: ON";
+		}
+  });
+
+</script>
+
+</body>
+</html>

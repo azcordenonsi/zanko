@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <!-- PLYR PLAYER -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+</head>
+
+<body>
+
+<div id="interface">
+  <div id="escala">
+    <section id="scene-videos" class="sceneV">
+    <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+
+    <!-- ÁREA DA PILHA DE VÍDEOS -->
+   
+
+		<img class="item-video" id="video01" data-id="1" src="img/video01.png" style="top:580px;left:360px;" data-video="videos/videoDiscursoKennedy.mp4">
+		<img class="item-video" id="video02" data-id="2" src="img/video02.png" style="top:580px;left:600px;" data-video="videos/videoMissaoGemini.mp4">
+
+	  
+    <!-- PLAYER DE VÍDEO -->
+<div id="video-overlay">
+
+  <div id="tv-container">
+
+
+    <video id="playerVideo2" class="plyr">
+      <source id="player-src" src="" type="video/mp4">
+    </video>
+    <div id="video-fechar">X</div>
+    <img id="tv-frame-img" src="img/fundoVideos.png">
+
+  </div>
+
+</div>
+
+
+
+
+<button id="audioToggle" class="audio-toggle">ÁUDIO: ON</button>
+    </section>
+  </div>
+</div>
+
+<!--<script type="module" src="videos.js"></script>-->
+
+<script>
+let playerVideo = null;
+
+function iniciarPlayer() {
+  if (!playerVideo) {
+    playerVideo = new Plyr('#playerVideo2', {
+      controls: [
+        'play', 'progress', 'current-time',
+        'volume', 'fullscreen'
+      ],
+      ratio: '16:9',
+      clickToPlay: true
+    });
+  }
+}
+
+/* ================================
+   ELEMENTOS
+================================ */
+const overlay = document.getElementById("video-overlay");
+const playerSrc = document.getElementById("player-src");
+const fecharBtn = document.getElementById("video-fechar");
+
+/* ================================
+   ABRIR VÍDEO
+================================ */
+function abrirVideo(caminho) {
+
+  // Mostra overlay fullscreen
+  overlay.style.display = "flex";
+
+  iniciarPlayer();
+
+  playerVideo.source = {
+    type: 'video',
+    sources: [{ src: caminho, type: 'video/mp4' }]
+  };
+  playerVideo.volume = 0.6;
+  // Aguarda Plyr atualizar o vídeo
+  setTimeout(() => playerVideo.play(), 100);
+}
+
+
+/* ================================
+   PILHA DE VIDEOS
+================================ */
+// ELEMENTOS
+const video01 = document.getElementById("video01");
+const video02 = document.getElementById("video02");
+
+video01.addEventListener("click", () => {
+    abrirVideo(video01.dataset.video);
+  });
+
+video02.addEventListener("click", () => {
+    abrirVideo(video02.dataset.video);
+  });
+
+
+  const audioToggle = document.getElementById("audioToggle");
+
+
+
+
+  audioToggle.addEventListener("click", (e) => {
+	if ( audioToggle.textContent == "ÁUDIO: OFF" ) {
+	    playerVideo.volume = 0.6;
+		audioToggle.textContent = "ÁUDIO: ON";
+		}
+	else { 
+		audioToggle.textContent = "ÁUDIO: OFF";
+        playerVideo.volume = 0.0;
+		}
+
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inspetor Zanko</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+  <main class="page">
+    <div id="escala">
+    <div class="scene-wrapper">
+      <section class="scene">
+	    <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+		<div class="rain-window-contato"></div>
+		<div id = "contatoLayer" class="contato-layer"></div>
+
+		<div class="lamp-glow lamp-contato"></div>
+		<button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
+	  <a class="hotspot secret listaContato" href="#" id="telefone" aria-label="Ligar"></a>
+		
+	</section>
+    </div>
+	</div>
+  </main>
+<audio id="rainAudio" loop preload="auto">
+   <source src="audio/chuva.ogg" type="audio/ogg">
+  Seu navegador não suporta áudio.
+</audio>
+<audio id="luzAudio" loop preload="auto">
+  <source src="audio/luzIncandescente.ogg" type="audio/ogg">
+  Seu navegador não suporta áudio.
+</audio>
+
+
+
+<script>
+  const telefonar= document.getElementById("telefone");
+  const rainAudio = document.getElementById("rainAudio");
+  const luzAudio = document.getElementById("luzAudio");
+
+  const audioToggle = document.getElementById("audioToggle");
+
+  const audioStart = new Audio("audio/telefoneInicio.mp3");
+  const audioChamando = new Audio("audio/telefoneChamando.mp3");
+  const audioEnd = new Audio("audio/telefoneEnd.mp3");
+  const audioGancho = new Audio("audio/telefoneGancho.mp3");
+
+
+  let audioStarted = false;
+  let fadeInterval = null;
+  var modoTelefone = "gancho";
+
+  function updateAudioButton() {
+    audioToggle.textContent = rainAudio.paused ? "ÁUDIO: OFF" : "ÁUDIO: ON";
+  }
+
+  function fadeInAudio(target = 0.22, duration = 2500) {
+    clearInterval(fadeInterval);
+
+    rainAudio.volume = 0;
+	luzAudio.volume = 0;
+    const steps = 30;
+    const stepTime = duration / steps;
+    const increment = target / steps;
+
+    fadeInterval = setInterval(() => {
+      if (rainAudio.volume + increment >= target) {
+        rainAudio.volume = target;
+		luzAudio.volume = target;
+        clearInterval(fadeInterval);
+      } else {
+        rainAudio.volume = Math.min(rainAudio.volume + increment, target);
+		luzAudio.volume = Math.min(luzAudio.volume + increment, target);
+      }
+    }, stepTime);
+  }
+
+  async function startRain() {
+    try {
+      await rainAudio.play();
+      if (!audioStarted) {
+        fadeInAudio(0.20, 2200);
+        audioStarted = true;
+      }
+      updateAudioButton();
+    } catch (err) {
+      updateAudioButton();
+    }
+  }
+
+  function stopRain() {
+    rainAudio.pause();
+	luzAudio.pause();
+    updateAudioButton();
+  }
+
+  window.addEventListener("load", () => {
+    luzAudio.play();
+	startRain();
+  });
+
+  document.addEventListener("click", () => {
+    if (!audioStarted && rainAudio.paused) {
+      startRain();
+	  luzAudio.play();
+    }
+  }, { once: true });
+
+  audioToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (rainAudio.paused) {
+      startRain();
+	  luzAudio.play();
+	  audioStart.volume = 1.0;
+	  audioChamando.volume = 1.0;
+	  audioEnd.volume = 1.0;
+	  audioGancho.volume = 1.0;
+    } else {
+      stopRain();
+	  audioStart.volume = 0.0;
+	  audioChamando.volume = 0.0;
+	  audioEnd.volume = 0.0;
+	  audioGancho.volume = 0.0;
+    }
+  });
+
+  updateAudioButton();
+  
+  
+ telefonar.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if ( modoTelefone == "gancho" ) { 
+
+	// quando terminar o primeiro
+	audioStart.addEventListener("ended", () => {
+		// troca o fundo
+		document.getElementById("contatoLayer").style.backgroundImage =
+		'url("img/fundoContato02.png")';
+		// começa o ringing
+		audioChamando.play();
+		});
+	// quando terminar o ringing
+	audioChamando.addEventListener("ended", () => {
+		audioEnd.play();
+		});
+	// começa tudo
+	audioStart.play();
+	modoTelefone = "fora";
+	}
+  else { 
+	// troca o fundo
+	audioGancho.play();
+	document.getElementById("contatoLayer").style.backgroundImage =
+		'url("img/fundoContato.png")';
+    modoTelefone = "gancho";
+	}
+});
+</script>
+</body>
+
+</html>
