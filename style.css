@@ -805,7 +805,7 @@ body{
   height: 225px;
   background: url("img/rain.gif") center/cover no-repeat;
   z-index: 1;
-  opacity: 0.25;
+  opacity: 0.95;
 }
 
 .rain-window::after {
@@ -823,7 +823,7 @@ body{
   height: 215px;
   background: url("img/rain.gif") center/cover no-repeat;
   z-index: 1;
-  opacity: 0.95;
+  opacity: 0.25;
 }
 
 ..rain-window-contato::after {
@@ -1113,4 +1113,5 @@ box-shadow:
     left: 30px;
     width: 430px;
 }
+
 
