@@ -14,49 +14,126 @@
 </head>
 <body>
   <main class="page">
+    <div id="escala">
     <div class="scene-wrapper">
       <section class="scene">
+		<div class="rain-window"></div>
+		<div class="office-layer"></div>
 
-        <div class="mist">
-  <span class="smoke s1"></span>
-  <span class="smoke s2"></span>
-  <span class="smoke s3"></span>
-</div>
+		<div class="lamp-glow lamp-home"></div>
 
-        <a class="hotspot depoimentos" href="depoimentos.html" aria-label="Depoimentos gravados">
+		<div class="mist">
+			<span class="smoke s1"></span>
+			<span class="smoke s2"></span>
+			<span class="smoke s3"></span>
+			<span class="smoke s4"></span>
+			<span class="smoke s5"></span>
+		</div>
+
+		<!-- hotspots -->
+		<a class="hotspot depoimentos" href="gravador.html" aria-label="Depoimentos gravados">
           <span class="label">Depoimentos gravados</span>
         </a>
-
-        <a class="hotspot arquivos" href="arquivos.html" aria-label="Arquivos">
+		<a class="hotspot arquivos" href="documentos.html" aria-label="Arquivos">
           <span class="label">Arquivos</span>
         </a>
-
-        <a class="hotspot filmes" href="filmes.html" aria-label="Filmes e registros">
+		<a class="hotspot filmes" href="videos.html" aria-label="Filmes e registros">
           <span class="label">Filmes e registros</span>
         </a>
-
-        <a class="hotspot jornais" href="jornais.html" aria-label="Jornais e revistas">
+		<a class="hotspot jornais" href="jornaisRevistas.html" aria-label="Jornais e revistas">
           <span class="label">Jornais e revistas</span>
         </a>
-
-        <a class="hotspot sistema" href="sistema-domus.html" aria-label="Sistema Domus">
+		<a class="hotspot sistema" href="computer.html" aria-label="Sistema Domus">
           <span class="label">Sistema Domus</span>
         </a>
-
-        <a class="hotspot contato" href="contato.html" aria-label="Contato">
+		<a class="hotspot contato" href="contato.html" aria-label="Contato">
           <span class="label">Contato</span>
         </a>
-
-        <a class="hotspot secret caso-secreto" href="caso-secreto.html" aria-label="Caso secreto"></a>
-
-        <div class="brand">
-          <h1>Inspetor Zanko</h1>
-          <p>Todo caso deixa rastros.</p>
-        </div>
-
-      </section>
+		<div class="brand">
+			<h1>Inspetor Zanko</h1>
+			<p>Todo caso deixa rastros.</p>
+		</div>
+		<button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
+	</section>
     </div>
+	</div>
   </main>
+<audio id="rainAudio" loop preload="auto">
+   <source src="audio/chuva.ogg" type="audio/ogg">
+  Seu navegador não suporta áudio.
+</audio>
+
+
+
+<script>
+  const rainAudio = document.getElementById("rainAudio");
+  const audioToggle = document.getElementById("audioToggle");
+
+  let audioStarted = false;
+  let fadeInterval = null;
+
+  function updateAudioButton() {
+    audioToggle.textContent = rainAudio.paused ? "ÁUDIO: OFF" : "ÁUDIO: ON";
+  }
+
+  function fadeInAudio(target = 0.22, duration = 2500) {
+    clearInterval(fadeInterval);
+
+    rainAudio.volume = 0;
+    const steps = 30;
+    const stepTime = duration / steps;
+    const increment = target / steps;
+
+    fadeInterval = setInterval(() => {
+      if (rainAudio.volume + increment >= target) {
+        rainAudio.volume = target;
+        clearInterval(fadeInterval);
+      } else {
+        rainAudio.volume = Math.min(rainAudio.volume + increment, target);
+      }
+    }, stepTime);
+  }
+
+  async function startRain() {
+    try {
+      await rainAudio.play();
+      if (!audioStarted) {
+        fadeInAudio(0.20, 2200);
+        audioStarted = true;
+      }
+      updateAudioButton();
+    } catch (err) {
+      updateAudioButton();
+    }
+  }
+
+  function stopRain() {
+    rainAudio.pause();
+    updateAudioButton();
+  }
+
+  window.addEventListener("load", () => {
+    startRain();
+  });
+
+  document.addEventListener("click", () => {
+    if (!audioStarted && rainAudio.paused) {
+      startRain();
+    }
+  }, { once: true });
+
+  audioToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (rainAudio.paused) {
+      startRain();
+    } else {
+      stopRain();
+    }
+  });
+
+  updateAudioButton();
+</script>
 </body>
 
 </html>
