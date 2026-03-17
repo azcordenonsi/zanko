@@ -24,7 +24,7 @@ document.querySelectorAll(".caso").forEach(area => {
 
     listaCasos.style.display = "none";
     pastaAberta.style.display = "block";
-
+    btnFechar.style.displey = "block";
     carregarPaginas();
   });
 });

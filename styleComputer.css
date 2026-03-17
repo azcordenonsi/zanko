@@ -1,70 +1,145 @@
-body {
-  background: hsl(154 50% 5%);
-  color: hsl(154 84% 70%);
-  text-shadow: 0 0 3px hsl(154 84% 70%);
-  font-family: monospace;
-  font-size: 30px;
-  max-width: 650px;
-  margin:auto;
+:root {
+  --bg: hsl(154 50% 5%);
+  --bg-soft: hsl(154 5% 15%);
+  --text: hsl(154 84% 70%);
+  --scanline: hsl(154 0% 0% / 0.2);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  text-shadow: 0 0 3px var(--text);
+  font-family: monospace;
+}
+
+/* CONTAINER GERAL */
+.terminal-shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(14px, 3vw, 32px);
+}
+
+/* ÁREA DO TERMINAL */
+.terminal-screen {
+  width: min(100%, 900px);
+  font-size: clamp(12px, 1.7vw, 30px);
+  line-height: 1.2;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* BLOCO ASCII / SAÍDA */
+pre,
+#prompt {
+  width: 100%;
+  /*white-space: pre;*/
+  margin: 0;
+}
+
+/* ESCONDE SEÇÕES INATIVAS */
 .divDomus {
   display: none;
 }
 
-pre {
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  display: table;
-  width: 100%;
+/* PROMPT */
+#prompt {
+  display: block;
 }
 
+/* INPUT ESCONDIDO */
+#hidden-input {
+  font-size: 16px; /* evita zoom no mobile */
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* FUNDO CRT */
 #glare {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1; /* ensure the effect doesn't cover the text */
-  background: radial-gradient(hsl(154 5% 15%) 0%, hsl(154 50% 5%) 70%);
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, var(--bg-soft) 0%, var(--bg) 70%);
 }
 
+/* LINHAS */
 @keyframes lines {
-  0% {background-position: 0px 0px}
-  50% {background-position: 0px 0px}
-  51% {background-position: 0px 2px}
-  100% {background-position: 0px 2px}
+  0% { background-position: 0 0; }
+  50% { background-position: 0 0; }
+  51% { background-position: 0 2px; }
+  100% { background-position: 0 2px; }
 }
 
 #interlaced {
   position: fixed;
-  background: repeating-linear-gradient(transparent 0px 1px, hsl(154 0% 0%/.2) 3px 4px);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
+  inset: 0;
+  z-index: 3;
   pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent 0 1px,
+    var(--scanline) 3px 4px
+  );
   animation: lines 0.06666666s linear infinite;
 }
 
+/* CURSOR */
 @keyframes blink {
-  0% {opacity: 0}
-  30% {opacity: 1}
-  70% {opacity: 1}
-  100% {opacity: 0}
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .blink {
   animation: blink 0.4s linear infinite;
 }
 
-#hidden-input {
-  font-size: 30px; /* 🔥 Isso previne o zoom no mobile */
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+/* TABLET */
+@media (max-width: 768px) {
+  .terminal-shell {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .terminal-screen {
+    font-size: clamp(11px, 2.1vw, 18px);
+    line-height: 1.18;
+  }
 }
 
+/* CELULAR */
+@media (max-width: 480px) {
+  .terminal-shell {
+    padding: 12px;
+  }
 
+  .terminal-screen {
+    font-size: clamp(9px, 2.8vw, 14px);
+    line-height: 1.15;
+  }
+
+  #interlaced {
+    opacity: 0.75;
+  }
+}

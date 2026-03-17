@@ -2,36 +2,38 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+
   
 </head>
 <body>
 
-<div id="interface">
-  <div id="escala">
-    <section id="scene-jornaisRevistas" class="scene">
-
-    <!-- BOTÃO VOLTAR -->
-    <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
-    <div id="jornalAberto" class="jornaisRevistasFundo">
-      <div id="btn-fecharJR" class="nav-arrowFechar fecharJR"></div>
-      <div class="paginaJR">
-		<img id="IMGpaginaJR" src="">
-	  </div>
-      <div id="btnJR-prev" class="nav-arrow left"></div>
-      <div id="btnJR-next" class="nav-arrow right"></div>
-    </div>
-	<a class="hotspot secret listaJornais01" href="#" id="abrir-jornaisRevistas01" aria-label="Abrir jornais e revistas"></a>
-	<a class="hotspot secret listaJornais02" href="#" id="abrir-jornaisRevistas02" aria-label="Abrir jornais e revistas"></a>
-	<a class="hotspot secret listaJornais03" href="#" id="abrir-jornaisRevistas03" aria-label="Abrir jornais e revistas"></a>
+<main class="page">
+    <div id="escala">
+    <div class="scene-wrapper">
+	  <section id="scene-jornaisRevistas" class="scene">
+		<!-- BOTÃO VOLTAR -->
+		<a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+		<div id="jornalAberto" class="jornaisRevistasFundo">
+			<div id="btn-fecharJR" class="nav-arrow fecharJR"></div>
+			<div class="paginaJR">
+				<img id="IMGpaginaJR" src="">
+			</div>
+			<div id="btnJR-prev" class="nav-arrow left"></div>
+			<div id="btnJR-next" class="nav-arrow right"></div>
+		</div>
+		<a class="hotspot secret listaJornais01" href="#" id="abrir-jornaisRevistas01" aria-label="Abrir jornais e revistas"></a>
+		<a class="hotspot secret listaJornais02" href="#" id="abrir-jornaisRevistas02" aria-label="Abrir jornais e revistas"></a>
+		<a class="hotspot secret listaJornais03" href="#" id="abrir-jornaisRevistas03" aria-label="Abrir jornais e revistas"></a>
 	</section>
+	</div>
   </div>
-</div>
+</main>
 
 
 

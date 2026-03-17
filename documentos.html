@@ -17,32 +17,30 @@
 
 <body>
 
-<div id="interface">
-  <div id="escala">
-    <section id="scene-arquivos" class="scene">
-      <div class="lamp-glow lamp-arquivos"></div>
+<main class="page">
+    <div id="escala">
+    <div class="scene-wrapper">
+      <section id="scene-arquivos" class="scene">
+	  <div class="lamp-glow lamp-arquivos"></div>
       <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
-
       <div id="lista-casos">
         <img src="img/pastaAbertaN.png" id="imagem-casos">
-        <div class="caso" data-caso="1" style="top:180px; left:130px; width:340px; height:50px;"></div>
-        <div class="caso" data-caso="2" style="top:232px; left:130px; width:340px; height:50px;"></div>
+        <div class="caso caso1" data-caso="1"></div>
+		<div class="caso caso2" data-caso="2"></div>
       </div>
-	  <img id="btn-fechar-caso" class="fechar" src="img/btn-x.png">
+	  <img id="btn-fechar-caso" class="fechar" src="img/btn-x.png" style="display:none;">
       <div id="pasta-aberta">
         <img id="img-pasta" src="img/pasta-caso-abertoN.png">
 		<img id="paginaArquivo" class="paginaArquivo" src="">
-        <!--<img id="pagina-esq" class="pagina" src="">
-        <img id="pagina-dir" class="pagina" src="">-->
         <img id="btn-prev" class="nav" src="img/seta-esq.png">
-        <img id="btn-next" class="nav" src="img/seta-dir.png">
-        
+        <img id="btn-next" class="nav" src="img/seta-dir.png">     
       </div>
       <a class="hotspot secret listaArquivos" href="#" id="abrir-arquivos" aria-label="Abrir arquivos"></a>
-	  <button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
+	  <button id="audioToggle" class="audio-toggle btn-audio">ÁUDIO: OFF</button>
     </section>
   </div>
 </div>
+ </main>
 
 <audio id="luzAudio" loop preload="auto">
   <source src="audio/luzIncandescente.ogg" type="audio/ogg">

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
@@ -12,10 +12,10 @@
 </head>
 <body>
 
-<div id="interface">
-  <div id="escala">
-    <section id="scene-gravador" class="scene">
-
+<main class="page">
+    <div id="escala">
+    <div class="scene-wrapper">
+	<section id="scene-gravador" class="scene">
     <!-- BOTÃO VOLTAR -->
     <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
     <div id="gravador" class="gravadorFundo">
@@ -33,19 +33,19 @@
 
       <!-- FITAS -->
       <div id="fitas-container">
-		<img class="fita" data-id="081" src="img/fita081.png" style="top: 0px;">
-		<img class="fita" data-id="082" src="img/fita082.png" style="top: 45px;">
-		<img class="fita" data-id="083" src="img/fita083.png" style="top: 90px;">
-		<img class="fita" data-id="084" src="img/fita084.png" style="top: 135px;">
-		<img class="fita" data-id="085" src="img/fita085.png" style="top: 180px;">
-		<img class="fita" data-id="086" src="img/fita086.png" style="top: 225px;">
-		<img class="fita" data-id="087" src="img/fita087.png" style="top: 270px;">
+		<img class="fita" data-id="081" src="img/fita081.png" style="top: 0%;">
+<img class="fita" data-id="082" src="img/fita082.png" style="top: 8.65%;">
+<img class="fita" data-id="083" src="img/fita083.png" style="top: 17.31%;">
+<img class="fita" data-id="084" src="img/fita084.png" style="top: 25.96%;">
+<img class="fita" data-id="085" src="img/fita085.png" style="top: 34.62%;">
+<img class="fita" data-id="086" src="img/fita086.png" style="top: 43.27%;">
+<img class="fita" data-id="087" src="img/fita087.png" style="top: 51.92%;">
 	  </div>
-	  <button id="audioToggle" class="audio-toggle">ÁUDIO: OFF</button>
-	</section>
+	  <button id="audioToggle" class="audio-toggle btn-audio">ÁUDIO: OFF</button>
+    </section>
   </div>
 </div>
-
+ </main>
 
 
 <script src="gravador.js"></script>

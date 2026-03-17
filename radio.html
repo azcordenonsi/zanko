@@ -35,7 +35,7 @@ const radioPower = document.getElementById("radioPower");
 const radioAM = document.getElementById("radioAM");
 const radioSintonia = document.getElementById("radioSintonia");
 
-const posicoesSintonia = [510, 530, 547, 564, 581, 597, 614, 630, 647];
+const posicoesSintonia = [49.9, 51.8, 53.5, 55.2, 56.9, 58.5, 60.2, 61.9, 63.6];
 let sintoniaAtual = 0; // começa na posição 0
 
 let timerLA = null;
@@ -49,7 +49,7 @@ let audioAtual = null;
 
 
 function atualizarSintonia() {
-  radioSintonia.style.left = `${posicoesSintonia[sintoniaAtual]}px`;
+  radioSintonia.style.left = `${posicoesSintonia[sintoniaAtual]}%`;
 }
 
 function pararAudioAtual() {
@@ -149,7 +149,7 @@ radioPower.addEventListener("click", (e) => {
   }
 });
 
-atualizarSintonia();
+//atualizarSintonia();
 
 </script>
 	 

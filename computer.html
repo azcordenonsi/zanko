@@ -4,7 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styleComputer.css">
 <body>
-<pre id="asciiText1">
+  <main class="terminal-shell">
+    <div class="terminal-screen">
+      <pre id="asciiText1">
            _ _ _ _ _ _ _ _ 
           |M|I|C|R|O|T|E|L|
            ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ 
@@ -19,8 +21,9 @@ BUS: 32Kb RAM at 0x0
 BUS: 4Kb Vd at 0XB0000
 VRTX 0.89 Loaded
 Initialization complete.
-</pre>
-<pre id="asciiText2">
+      </pre>
+
+      <pre id="asciiText2">
 --------------------------------------
                _  _  _
             _ /_\/_\/_\ _
@@ -38,8 +41,9 @@ Initialization complete.
           MILITAR E SEGURANÇA
 		  
 --------------------------------------		  
-</pre>
-<pre id="asciiText3">
+      </pre>
+
+      <pre id="asciiText3">
 > INICIANDO VERIFICAÇÃO ..........[OK]
 > TESTANDO CANAL DE COMUNICAÇÃO...[OK]
 > INTEGRIDADE DOS DADOS...........[OK]
@@ -48,15 +52,20 @@ Initialization complete.
 > DIGITE [ EXIT ] PARA SAIR ......[EX]
 > VALIDAÇÃO DE USUÁRIO................
 --------------------------------------
-</pre>
-  </div>
-  <pre id="instructions"></pre>
-  <pre id="output"></pre>
-  <div id="prompt">
-    <span id="command-input"></span><span id="cursor" class="blink"></span>
-  </div>
-  <input id="hidden-input" style="position:absolute; opacity:0; pointer-events:none;">
-  <div id="interlaced"></div>  
+      </pre>
+
+      <pre id="instructions"></pre>
+      <pre id="output"></pre>
+
+      <div id="prompt">
+        <span id="command-input"></span><span id="cursor" class="blink"></span>
+      </div>
+
+      <input id="hidden-input" inputmode="text" autocomplete="off">
+    </div>
+  </main>
+
+  <div id="interlaced"></div>
   <div id="glare"></div>
 </body>
 <script src="console.js"></script>

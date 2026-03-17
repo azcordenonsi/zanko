@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
@@ -17,30 +17,31 @@
 
 <body>
 
-<div id="interface">
-  <div id="escala">
-    <section id="scene-videos" class="sceneV">
-    <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
-
-    <!-- ÁREA DA PILHA DE VÍDEOS -->
-		<img class="item-video" id="video01" data-id="1" src="img/video01.png" style="top:580px;left:360px;" data-video="videos/videoDiscursoKennedy.mp4">
-		<img class="item-video" id="video02" data-id="2" src="img/video02.png" style="top:580px;left:600px;" data-video="videos/videoMissaoGemini.mp4">
-    <!-- PLAYER DE VÍDEO -->
-	<div id="video-overlay">
-		<div id="tv-container">
+<main class="page">
+    <div id="escala">
+    <div class="scene-wrapper">
+	  <section id="scene-videos" class="scene">
+      <a href="index.html" class="ui-button btn-voltar">VOLTAR</a>
+	  <!-- ÁREA DA PILHA DE VÍDEOS -->
+		<img class="item-video" id="video01" data-id="1" src="img/video01.png" style="top:75.52%; left:35.16%;" data-video="videos/videoDiscursoKennedy.mp4">
+		<img class="item-video" id="video02" data-id="2" src="img/video02.png" style="top:75.52%; left:58.59%;" data-video="videos/videoMissaoGemini.mp4">
+       <!-- PLAYER DE VÍDEO -->
+	   <div id="video-overlay">
+		 <div id="tv-container">
 			<video id="playerVideo2" class="plyr">
 			<source id="player-src" src="" type="video/mp4">
 			</video>
-		<div id="video-fechar">X</div>
-		<div id="tv-vidro"></div>
-		<img id="tv-frame-img" src="img/fundoVideos.png">
+			<div id="video-fechar">X</div>
+			<div id="tv-vidro"></div>
+			<img id="tv-frame-img" src="img/fundoVideos.png">
+			</div>
 		</div>
-	</div>
 	
-	<button id="audioToggle" class="audio-toggle">ÁUDIO: ON</button>
+	<button id="audioToggle" class="audio-toggle btn-audio">ÁUDIO: ON</button>
 	</section>
+	</div>
   </div>
-</div>
+</main>
 
 <!--<script type="module" src="videos.js"></script>-->
 
