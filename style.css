@@ -476,7 +476,7 @@ body {
 }
 
 .arquivos {
-  left: 36.5%;
+  left: 37%;
   top: 58%;
   width: 145px;
   height: 76px;
@@ -540,6 +540,23 @@ body {
   top: 40.89%;
   height: 32.94%;
 }
+
+/* casos */
+
+.caso10781 {
+  position: absolute;
+  left: 82.2%;
+  top: 76.5%;
+  width: 12.5%;
+  height: 6.8%;
+ /* clip-path: polygon(
+    11.1% 0%,
+    97% 6%,
+    86% 99%,
+    0% 94%
+  );*/
+}
+
 
 /* Jornais e Revistas */
 
